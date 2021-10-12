@@ -11,7 +11,7 @@ const requireComponent = require.context(
   // Do not look in subdirectories
   false,
   // Only include "_base-" prefixed .vue files
-  /p-[\w-]+\.vue$/
+  /p-[\w-]+\.(vue|js)$/
 )
 
 // For each matching file name...
@@ -20,8 +20,8 @@ requireComponent.keys().forEach((fileName) => {
   const componentConfig = requireComponent(fileName)
   // Get the PascalCase version of the component name
   const componentName = fileName
-    // Remove the "./_" from the beginning
-   .replace(/^\.\//, '')
+    // Remove the "./" from the beginning
+    .replace(/^\.\//, '')
     // Remove the file extension from the end
     .replace(/\.\w+$/, '')
     // Split up kebabs
