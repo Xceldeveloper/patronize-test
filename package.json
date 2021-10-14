@@ -10,9 +10,11 @@
     "test": "jest"
   },
   "dependencies": {
+    "@mdi/font": "^6.2.95",
     "@nuxtjs/pwa": "^3.3.5",
     "core-js": "^3.15.1",
-    "nuxt": "^2.15.7"
+    "nuxt": "^2.15.7",
+    "vue-clickaway": "^2.2.2"
   },
   "devDependencies": {
     "@nuxtjs/style-resources": "^1.2.1",

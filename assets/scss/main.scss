@@ -7,3 +7,14 @@ $Blue:#006AFF;
 .font-dm-sans{
     font-family: 'DM Sans', sans-serif;
 }
+
+
+
+  .p-input {
+    &__label {
+      .p-input__box {
+      }
+      .p-input__details {
+      }
+    }
+  }

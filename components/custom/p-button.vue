@@ -1,6 +1,6 @@
 <template>
   <button
-        :style="styleVariables"
+    :style="styleVariables"
     style="`${style}`"
     class="p-button p-button__element"
     @click="clicked"
@@ -21,8 +21,10 @@ export default {
     loading: { type: Boolean, default: false },
     borderRadius: { default: 8 },
     padding: { default: "0px 30px" },
+    margin: { default: "0px " },
     fontSize: { default: "14px" },
-    fontFamily:{default:"DM Sans, sans-serif"},
+    fontWeight: { default: "600" },
+    fontFamily: { default: "DM Sans, sans-serif" },
     border: { default: "" },
     backgroundColor: { default: "#006AFF" },
     to: { default: null },
@@ -59,13 +61,16 @@ export default {
             : this.borderRadius,
         "--padding":
           typeof this.padding === "number" ? this.padding + "px" : this.padding,
+        "--margin":
+          typeof this.margin === "number" ? this.margin + "px" : this.margin,
         "--font-size":
           typeof this.fontSize === "number"
             ? this.fontSize + "px"
             : this.fontSize,
         "--border": this.border,
         "--background-color": this.backgroundColor,
-        "--font-family":this.fontFamily
+        "--font-family": this.fontFamily,
+        "--font-weight": this.fontWeight + "",
       };
     },
   },
@@ -77,6 +82,7 @@ export default {
   $self: &;
   font-size: var(--font-size);
   padding: var(--padding);
+  margin: var(--font-weight);
   outline-style: none;
   cursor: pointer;
   transition: 0.2s all;
@@ -84,7 +90,7 @@ export default {
   outline-style: none;
   border: var(--border);
   background-color: var(--background-color);
-  font-weight: bold;
+  font-weight: var(--font-weight);
   font-family: var(--font-family);
   height: 50px;
   color: #fff;
