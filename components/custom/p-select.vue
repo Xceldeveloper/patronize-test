@@ -5,14 +5,14 @@
       @clicked="show"
       disabled
      
-      label="Select"
+      :label="label"
     >
       <template v-slot:suffix>
         <p-icon color="#A5B4CB" icon="mdi-menu-down" />
       </template>
     </p-input>
 
-    <div v-on-clickaway="testx"
+    <div v-on-clickaway="hide"
       class="p-select__overlay"
       :class="{
         'p-select__overlay--show': this.showContents,
@@ -26,7 +26,7 @@
 import { mixin as clickaway } from 'vue-clickaway';
 export default {
   mixins:[clickaway],
-  props: { value: {} },
+  props: { value: {},label:{default:""} },
   data() {
     return {
       content: this.value,
@@ -38,11 +38,17 @@ export default {
       console.log("cliked");
     },
     hide(){
-        if(this.showContents){ this.showContents = false}
+    //     if(this.showContents){
+    //    console.log("hide content..");
+    //    this.showContents = false
+    //     }
+
     },
     show(){
-       if(!this.showContents){this.showContents = true}
-    }
+    //    if(!this.showContents){
+    //        console.log("show contents");
+    //        this.showContents = true
+    //    }
   },
   computed: {
     propsClasses() {
@@ -68,15 +74,23 @@ export default {
         this.content = val;
       },
     },
+    showContents(val){
+        if(val){
+            
+        }
+    }
   },
+
+  }
 };
 </script>
 
 <style lang="scss" scoped>
 .p-select {
-  display: inline-block;
+  
   position: relative;
   z-index: 50;
+  width: 100%;
 
   &__overlay {
     width: 100%;

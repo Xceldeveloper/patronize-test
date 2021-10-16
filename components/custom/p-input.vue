@@ -1,6 +1,6 @@
 <template>
   <div  @click="$emit('clicked')"
-    style="display: inline-block; width: 300px; height: 80px"
+    style="display: inline-block;"
     :style="styleVariables"
   >
     <p-text
@@ -48,7 +48,7 @@ export default {
     border: { default: "1px solid #e4e9ef" },
     backgroundColor: { default: "transparent" },
     height: { default: 50 },
-    width: { default: 300 },
+    width: { default: "100%" },
     color: { default: "#000" },
   },
   data() {

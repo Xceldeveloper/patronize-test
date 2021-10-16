@@ -1,92 +1,94 @@
 <template>
-  <div class="font-dm-sans">
-    Coming soon...
-    <p-button> Logout </p-button>
-
-    <p-input
-      v-model="account_number"
-      label="Bank Verification Number (11-digits)"
-    />
-    <p-input v-model="bvn" label="BVN" />
-    <div></div>
-    <p-input v-model="bvn" label="Instagram">
-      <template v-slot:prefix>
-        <p-text margin="5px" color="#7D8DA7"> @ </p-text>
-      </template>
-    </p-input>
-
-    <br />
-    <br />
-    {{ bvn }}---------{{ account_number }}
-    <br />
-    <br />
-
-    <div class="verification-method">
-      <!-- <p-text >Select a verification method </p-text> -->
-      <p-button
-        @click="clicked('BVN')"
-        class="verification-method__tab-button"
-        :class="{ 'verification-method__tab-button--active': method == 'BVN' }"
-      >
-        BVN
-      </p-button>
-
-      <p-button
-        @click="clicked('ACCOUNT')"
-        class="verification-method__tab-button"
-        :class="{
-          'verification-method__tab-button--active': method == 'ACCOUNT',
-        }"
-      >
-        Personal Account Number
-      </p-button>
+  <div class="wrapper">
+    <div class="side-bar">
+      <div><img
+        src="/images/onboarding/image1.png"
+        class="side-bar__image-background"
+        alt=""
+      /></div>
     </div>
+    <div class="container">
+      <div class="header">
+        <p-button class="logout-btn" background-color="#ff6774"
+          >Logout</p-button
+        >
+      </div>
 
-    <br />
+         <div>
+            <tab-header v-model="index"   />
+         </div>
 
-    hh
-    <div></div>
-    <div></div> <br>
-    <p-select/>
+        <step-1/>
+      </div>
   </div>
 </template>
 
 <script>
-import pInput from "~/components/custom/p-input.vue";
-import PText from "~/components/custom/p-text.vue";
+import Step1 from '~/components/pages/onboarding/step-1.vue';
+import TabHeader from "~/components/views/tab-header.vue";
+
 export default {
-  components: { pInput, PText },
+  components: { TabHeader, Step1 },
+
   data() {
     return {
-      method: "BVN",
-      bvn: "",
-      account_number: "",
+      index:0
     };
   },
-  methods: {
-    clicked(val) {
-      console.log(val);
-      this.method = val;
-    },
-  },
+  methods: {},
 };
 </script>
-<style lang="scss" scoped>
-.verification-method {
-  padding: 0px 50px;
 
-  &__tab-button {
-    background-color: #f5f6fa;
-    color: #000;
-    height: 41px;
-    padding: 0px 20px;
-    border: 1.8px solid #1417371a;
-    border-radius: 10px;
+<style lang="scss" >
+body {
+  margin: 0;
+  padding: 0;
+}
+.wrapper {
+  width: 100vww;
+  height: 100vh;
+  display: flex;
+  background-color: #fff;
+  overflow: auto;
+}
 
-    &--active {
-      border: 1.8px solid $Blue;
-      background-color: #dceaff;
-    }
+.side-bar {
+  width: 28vw;
+  height: 100vh;
+  background-color: #f3e8c9;
+  position: relative;
+
+  &__image-background {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    position: absolute;
+    bottom: 12vh;
   }
 }
+
+.container {
+  flex: 1;
+  height: 100%;
+  overflow: auto;
+  padding: 0px 50px;
+}
+
+.header{
+padding: 15px 0px;
+  clear: both;
+  overflow: auto;
+}
+
+.logout-btn {
+       background-color: #ff6774;
+       float: right;
+    }
+  
+
+
+
+
+
+
 </style>

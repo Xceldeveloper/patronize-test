@@ -1,9 +1,66 @@
 
-  .p-text.p-text__element {
-    &--truncate {
-    }
-    &--max-lines {
-    }
-    slot {
+
+ 
+  .stepper {
+    &__step {
+      &--selected {
+      }
+      .step__btn {
+        &--selected {
+        }
+      }
+      .step__text {
+        &--selected {
+        }
+      }
     }
   }
+
+
+
+  .top {
+    &__logout-btn {
+    }
+  }
+
+  
+  .top {
+    &__logout-btn--modify {
+    }
+  }
+
+  .top {
+    &__logout-btn {
+      &--modify {
+      }
+    }
+  }
+
+
+
+
+  .bank-verication-block {
+    &__account-number {
+      .bank-verication-block__account-name {
+      }
+    }
+  }
+  .bank-verication-block {
+    &__account-number {
+      .bank-verication-block__account-name {
+      }
+    }
+  }
+
+
+
+  .bvn-verification-block {
+    &__bvn {
+    }
+  }
+  .header {
+    &__logout-btn {
+    }
+  }
+
+
