@@ -34,7 +34,10 @@ export default {
   },
   methods: {
     clicked() {
-      if (this.to != null && !this.disabled) {
+      if (this.disabled) {
+        return;
+      }
+      if (this.to != null) {
         location.assign(this.to);
       }
 

@@ -1,11 +1,13 @@
 <template>
   <div class="wrapper">
     <div class="side-bar">
-      <div><img
-        src="/images/onboarding/image1.png"
-        class="side-bar__image-background"
-        alt=""
-      /></div>
+      <div>
+        <img
+          src="/images/onboarding/image1.png"
+          class="side-bar__image-background"
+          alt=""
+        />
+      </div>
     </div>
     <div class="container">
       <div class="header">
@@ -13,18 +15,19 @@
           >Logout</p-button
         >
       </div>
-
-         <div>
-            <tab-header v-model="index"   />
-         </div>
-
-        <step-1/>
+      <div class="steps-header">
+        <tab-header v-model="tabIndex" :completed="completed" />
       </div>
+
+      <div class="components-wrapper">
+        <step-1 v-if="tabIndex == 0" @continue="competedVerification" />
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import Step1 from '~/components/pages/onboarding/step-1.vue';
+import Step1 from "~/components/pages/onboarding/step-1.vue";
 import TabHeader from "~/components/views/tab-header.vue";
 
 export default {
@@ -32,10 +35,16 @@ export default {
 
   data() {
     return {
-      index:0
+      tabIndex: 0,
+      completed: null,
     };
   },
-  methods: {},
+  methods: {
+    competedVerification() {
+      this.completed = this.tabIndex;
+      this.tabIndex++;
+    },
+  },
 };
 </script>
 
@@ -49,7 +58,6 @@ body {
   height: 100vh;
   display: flex;
   background-color: #fff;
-  overflow: auto;
 }
 
 .side-bar {
@@ -69,26 +77,27 @@ body {
 
 .container {
   flex: 1;
-  height: 100%;
-  overflow: auto;
-  padding: 0px 50px;
+  height: 100vh;
 }
 
-.header{
-padding: 15px 0px;
+.header {
+  padding: 30px;
   clear: both;
   overflow: auto;
 }
 
 .logout-btn {
-       background-color: #ff6774;
-       float: right;
-    }
-  
+  background-color: #ff6774;
+  float: right;
+}
 
+.steps-header {
+  padding: 0px 50px;
+}
 
-
-
-
-
+.components-wrapper {
+  padding: 0px 30px;
+  height: 73.3vh;
+  overflow: auto;
+}
 </style>

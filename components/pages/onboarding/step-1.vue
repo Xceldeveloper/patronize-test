@@ -33,45 +33,56 @@
       </p-button>
     </div>
 
-    <div class="bvn-verification-block" v-if="verification_method == 'BVN'">
-        <p-input class="bvn-verification-block__bvn" label="Bank Verification Number (11-digits)" /> 
-
-    </div>
-
-
-   <div class="bank-verication-block" v-if="verification_method == 'ACCOUNT'">
-        <p-input class="bank-verication-block__account-number" label="Account Number" /> 
-
-         <p-input class="bank-verication-block__account-name" disabled label="Select Bank">
-             <template v-slot:suffix>
-                 <p-icon icon="mdi-menu-down" style="cursor:pointer" color="#A5B4CB" />
-             </template>
-         </p-input>
-       
-        
-   </div>
-
-
-
-   <p-button @click="$emit('continue')" style="float:right;margin-top:20px">Continue</p-button>
+    <bvn-verification-block v-model="bvn" v-if="verification_method == 'BVN'" />
+    <bank-verification-block
+      v-model="accountDetails"
+      v-if="verification_method == 'ACCOUNT'"
+    />
+    <p-button
+      :disabled="cantMove"
+      @click="CONTINUE"
+      style="float: right; margin: 20px 0px"
+      >Continue</p-button
+    >
   </div>
 </template>
 
 <script>
 import pText from "~/components/custom/p-text.vue";
+import BankVerificationBlock from "../../views/onbaording/bank-verification-block.vue";
+import BvnVerificationBlock from "../../views/onbaording/bvn-verification-block.vue";
 export default {
-  components: { pText },
+  components: { pText, BvnVerificationBlock, BankVerificationBlock },
   data() {
     return {
       verification_method: "BVN",
       bvn: "",
-      account_number: "",
+      accountDetails: {},
+      extract: null,
     };
   },
   methods: {
     clicked(val) {
       console.log(val);
       this.verification_method = val;
+    },
+
+    CONTINUE() {
+      this.$emit("continue", this.extract);
+    },
+  },
+  computed: {
+    cantMove() {
+      if (this.verification_method == "BVN") {
+        this.extract = this.bvn; //prepare data to send out
+        return this.bvn.length != 11;
+      } else {
+        this.extract = this.accountDetails; // up
+        return (
+          this.accountDetails.name == "" &&
+          this.accountDetails.number.length != 11
+        );
+      }
     },
   },
 };
@@ -80,6 +91,7 @@ export default {
 <style lang="scss" scoped>
 .step-1-wrapper {
   width: 100%;
+  height: 100%;
 }
 
 .step-info {
@@ -101,7 +113,6 @@ export default {
 
 .verification-method {
   margin-top: 30px;
-  
 
   &__title {
     color: #141737;
@@ -125,32 +136,4 @@ export default {
     }
   }
 }
-
-
-  .bvn-verification-block {
-       padding: 30px 0px;
-     border-bottom: 1px solid #E9EEF4;
-
-    &__bvn {
-        width: 100%;
-    }
-  }
-
-
- .bank-verication-block {
-     padding: 30px 0px;
-     border-bottom: 1px solid #E9EEF4;
-  
-     align-items: center;
-     display: flex;
-     gap:60px;
-    &__account-number {
-     flex: 1;
-    }
-
-      &__account-name {
-          flex: 1;
-      }
-  }
-
 </style>

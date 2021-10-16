@@ -112,6 +112,7 @@ export default {
     value: {
       immediate: true,
       handler(val) {
+           this.tabs[val].active = true;
         this.$emit("input", val);
       },
     },
@@ -139,7 +140,7 @@ export default {
 .stepper {
   display: flex;
   gap: 40px;
-  padding: 40px 0px 20px 0px;
+  padding: 15px 0px 20px 0px;
   border-bottom: 1px solid #e9eef4;
 
   &__step {
