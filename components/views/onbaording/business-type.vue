@@ -51,10 +51,23 @@ export default {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 30px;
   margin-top: 40px;
- 
 
   &__input {
     width: 100%;
+  }
+}
+
+//smal devices
+@media screen and (max-width: 767px) {
+  .categories-block {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+
+    &__input {
+      width: 100%;
+    }
   }
 }
 </style>

@@ -25,7 +25,7 @@
 <script>
 export default {
   props: {
-    editable: { type: Boolean, default: true },
+    editable: { type: Boolean, default: false },
     value: { default: 0 },
     completed: { default: null },
     canceled: { default: null },
@@ -112,7 +112,7 @@ export default {
     value: {
       immediate: true,
       handler(val) {
-           this.tabs[val].active = true;
+        this.tabs[val].active = true;
         this.$emit("input", val);
       },
     },
@@ -201,6 +201,70 @@ export default {
       }
       &--disabled {
         cursor: not-allowed;
+      }
+    }
+  }
+}
+
+//smal devices
+@media screen and (max-width: 767px) {
+  .stepper {
+    display: flex;
+    gap: 40px;
+    padding: 15px 0px 20px 0px;
+    border-bottom: 1px solid #e9eef4;
+
+    &__step {
+      display: flex;
+      cursor: pointer;
+      align-items: center;
+      gap: 10px;
+      display: none;
+
+      &--selected {
+        cursor: default;
+        display: block;
+      }
+      &--completed {
+        cursor: pointer;
+        display: none;
+      }
+      &--disabled {
+        cursor: not-allowed;
+      }
+
+      .step__btn {
+        height: 31px;
+        width: 31px;
+        padding: 0px;
+        border-radius: 3.1px;
+        font-size: 13.64px;
+        font-weight: normal;
+        color: #a5b4cb;
+        background-color: #e4e9ef;
+        cursor: pointer;
+        &--selected {
+          background-color: #006aff;
+          color: #fff;
+          cursor: default;
+        }
+        &--completed {
+          color: #a5b4cb;
+          cursor: pointer;
+          background-color: #e4e9ef;
+
+          &__marker {
+            visibility: visible;
+            font-size: 16px;
+            color: #006aff;
+          }
+        }
+        &--disabled {
+          cursor: not-allowed;
+        }
+      }
+      .step__text {
+        display: none;
       }
     }
   }

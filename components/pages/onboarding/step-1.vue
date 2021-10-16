@@ -11,7 +11,7 @@
         >Select a verification method
       </p-text>
       <p-button
-        @click="clicked('BVN')"
+        @click="selectMethod('BVN')"
         class="verification-method__tab-button"
         :class="{
           'verification-method__tab-button--active':
@@ -22,7 +22,7 @@
       </p-button>
 
       <p-button
-        @click="clicked('ACCOUNT')"
+        @click="selectMethod('ACCOUNT')"
         class="verification-method__tab-button"
         :class="{
           'verification-method__tab-button--active':
@@ -38,12 +38,12 @@
       v-model="accountDetails"
       v-if="verification_method == 'ACCOUNT'"
     />
-    <p-button
-      :disabled="cantMove"
-      @click="CONTINUE"
-      style="float: right;  margin: 20px 0px"
-      >Continue</p-button
-    >
+
+    <div style="text-align: right">
+      <p-button :disabled="cantMove" @click="CONTINUE" style="margin: 20px 0px"
+        >Continue</p-button
+      >
+    </div>
   </div>
 </template>
 
@@ -57,13 +57,12 @@ export default {
     return {
       verification_method: "BVN",
       bvn: "",
-      accountDetails: {},
+      accountDetails: null,
       extract: null,
     };
   },
   methods: {
-    clicked(val) {
-      console.log(val);
+    selectMethod(val) {
       this.verification_method = val;
     },
 
@@ -78,9 +77,10 @@ export default {
         return this.bvn.length != 11;
       } else {
         this.extract = this.accountDetails; // up
+        if (this.accountDetails == null) {return true;} // null safety 
         return (
-          this.accountDetails.name == "" &&
-          this.accountDetails.number.length != 11
+          this.accountDetails.name == "" ||
+          this.accountDetails.number.length != 10
         );
       }
     },
@@ -91,7 +91,6 @@ export default {
 <style lang="scss" scoped>
 .step-1-wrapper {
   width: 100%;
-  height: 100%;
 }
 
 .step-info {
@@ -106,7 +105,6 @@ export default {
   font-size: 26px;
   width: 100%;
   display: block;
-  
 
   color: #141737;
 }
@@ -129,6 +127,7 @@ export default {
     border: 1.8px solid #1417371a;
     border-radius: 10px;
     margin-right: 20px;
+    margin-top: 20px;
 
     &--active {
       border: 1.8px solid $Blue;

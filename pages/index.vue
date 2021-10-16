@@ -10,13 +10,15 @@
       </div>
     </div>
     <div class="container">
-      <div class="header">
-        <p-button class="logout-btn" background-color="#ff6774"
-          >Logout</p-button
-        >
-      </div>
-      <div class="steps-header">
-        <tab-header v-model="tabIndex" :completed="completed" />
+      <div>
+        <div class="header">
+          <p-button class="logout-btn" background-color="#ff6774"
+            >Logout</p-button
+          >
+        </div>
+        <div class="steps-header">
+          <tab-header v-model="tabIndex" :completed="completed" />
+        </div>
       </div>
 
       <div class="components-wrapper">
@@ -31,7 +33,7 @@
 <script>
 import Step1 from "~/components/pages/onboarding/step-1.vue";
 import Step2 from "~/components/pages/onboarding/step-2.vue";
-import Step3 from '~/components/pages/onboarding/step-3.vue';
+import Step3 from "~/components/pages/onboarding/step-3.vue";
 import TabHeader from "~/components/views/tab-header.vue";
 
 export default {
@@ -52,9 +54,9 @@ export default {
       this.completed = this.tabIndex;
       this.tabIndex++;
     },
-    completedOnboarding(){
-        this.completed = this.tabIndex;
-    }
+    completedOnboarding() {
+      this.completed = this.tabIndex;
+    },
   },
 };
 </script>
@@ -89,6 +91,8 @@ body {
 .container {
   flex: 1;
   height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .header {
@@ -107,7 +111,7 @@ body {
 
 .components-wrapper {
   padding: 0px 50px;
-  height: 73.3vh;
+  flex: 1;
   overflow: auto;
 }
 
@@ -115,7 +119,7 @@ body {
 @media screen and (min-width: 767px) {
   * {
     scrollbar-width: thin;
-    scrollbar-color: red transparent;
+    scrollbar-color: transparent;
   }
 
   *::-webkit-scrollbar {
@@ -125,9 +129,41 @@ body {
     background: #ededed;
   }
   *::-webkit-scrollbar-thumb {
-    background-color: #ccbd94;
+    background-color: #f3e8c9;
     border-radius: 10px;
     border: transparent;
+  }
+}
+
+//smal devices
+@media screen and (max-width: 767px) {
+  .side-bar {
+    display: none;
+  }
+
+  .header {
+    height: 50px;
+    padding: 0px;
+  }
+
+  .logout-btn {
+    display: none;
+  }
+
+  .steps-header {
+    padding: 0px 20px;
+  }
+
+  .components-wrapper {
+    padding: 0px 20px;
+    overflow: auto;
+  }
+}
+
+// ipads/tablets
+@media screen and (min-width: 767px) and (orientation: portrait) {
+  .side-bar {
+    display: none;
   }
 }
 </style>

@@ -62,7 +62,6 @@ export default {
   .bank-verication-block {
     padding: 30px 0px;
     border-bottom: 1px solid #e9eef4;
-
     align-items: center;
     display: flex;
     flex-direction: column;

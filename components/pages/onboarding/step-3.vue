@@ -1,5 +1,5 @@
 <template>
-  <div class="step-1-wrapper">
+  <div class="step-3-wrapper">
     <div>
       <p-text class="step-info" block>Step 3/3</p-text>
     </div>
@@ -34,25 +34,22 @@
       </p-button>
     </div>
 
-    <p-button
-      :disabled="cantMove"
-      @click="COMPLETE"
-      style="float: right; margin: 20px 0px"
-      >Complete</p-button
-    >
+    <div style="text-align: right">
+      <p-button :disabled="cantMove" @click="COMPLETE" style="margin: 20px 0px"
+        >Complete</p-button
+      >
+    </div>
   </div>
 </template>
 
 <script>
 import BusinessType from "~/components/views/onbaording/business-type.vue";
-import BankVerificationBlock from "../../views/onbaording/bank-verification-block.vue";
-import BvnVerificationBlock from "../../views/onbaording/bvn-verification-block.vue";
 export default {
-  components: { BvnVerificationBlock, BankVerificationBlock, BusinessType },
+  components: { BusinessType },
   data() {
     return {
       usesPos: null,
-      business: {},
+      business: null,
       extract: null,
     };
   },
@@ -64,6 +61,7 @@ export default {
   },
   computed: {
     cantMove() {
+    if(this.business == null){return true} // null safety and disable
       return (
         this.business.type == "" ||
         this.business.category == "" ||
@@ -75,9 +73,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.step-1-wrapper {
+.step-3-wrapper {
   width: 100%;
-  height: 100%;
 }
 
 .step-info {
