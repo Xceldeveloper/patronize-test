@@ -41,7 +41,7 @@
     <p-button
       :disabled="cantMove"
       @click="CONTINUE"
-      style="float: right; margin: 20px 0px"
+      style="float: right;  margin: 20px 0px"
       >Continue</p-button
     >
   </div>
@@ -96,7 +96,7 @@ export default {
 
 .step-info {
   display: block;
-  margin-top: 35px;
+  margin: 40px 0px;
   color: #a5b4cb;
   font-size: 13px;
 }
@@ -106,7 +106,7 @@ export default {
   font-size: 26px;
   width: 100%;
   display: block;
-  margin-top: 20px;
+  
 
   color: #141737;
 }

@@ -20,7 +20,9 @@
       </div>
 
       <div class="components-wrapper">
-        <step-1 v-if="tabIndex == 0" @continue="competedVerification" />
+        <step-1 v-if="tabIndex == 0" @continue="completedVerification" />
+        <step-2 v-else-if="tabIndex == 1" @continue="confirmedSocialHandles" />
+        <step-3 v-else-if="tabIndex == 2" @continue="completedOnboarding" />
       </div>
     </div>
   </div>
@@ -28,10 +30,12 @@
 
 <script>
 import Step1 from "~/components/pages/onboarding/step-1.vue";
+import Step2 from "~/components/pages/onboarding/step-2.vue";
+import Step3 from '~/components/pages/onboarding/step-3.vue';
 import TabHeader from "~/components/views/tab-header.vue";
 
 export default {
-  components: { TabHeader, Step1 },
+  components: { TabHeader, Step1, Step2, Step3 },
 
   data() {
     return {
@@ -40,10 +44,17 @@ export default {
     };
   },
   methods: {
-    competedVerification() {
+    completedVerification(details) {
       this.completed = this.tabIndex;
       this.tabIndex++;
     },
+    confirmedSocialHandles(handles) {
+      this.completed = this.tabIndex;
+      this.tabIndex++;
+    },
+    completedOnboarding(){
+        this.completed = this.tabIndex;
+    }
   },
 };
 </script>
@@ -87,7 +98,6 @@ body {
 }
 
 .logout-btn {
-  background-color: #ff6774;
   float: right;
 }
 
@@ -96,8 +106,28 @@ body {
 }
 
 .components-wrapper {
-  padding: 0px 30px;
+  padding: 0px 50px;
   height: 73.3vh;
   overflow: auto;
+}
+
+/* to show  on big screens only */
+@media screen and (min-width: 767px) {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: red transparent;
+  }
+
+  *::-webkit-scrollbar {
+    width: 7px;
+  }
+  *::-webkit-scrollbar-track {
+    background: #ededed;
+  }
+  *::-webkit-scrollbar-thumb {
+    background-color: #ccbd94;
+    border-radius: 10px;
+    border: transparent;
+  }
 }
 </style>
