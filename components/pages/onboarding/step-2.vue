@@ -33,7 +33,7 @@ export default {
   },
   methods: {
     CONFIRM_HANDLES() {
-      this.$emit("continue", this.handles);
+      this.$emit("social-handles-confirmed", this.handles);
     },
   },
   computed: {

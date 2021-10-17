@@ -56,7 +56,7 @@ export default {
   methods: {
     COMPLETE() {
       this.extract = { busines: this.business, pos: this.usesPos };
-      this.$emit("continue", this.extract);
+      this.$emit("business-confimed", this.extract);
     },
   },
   computed: {

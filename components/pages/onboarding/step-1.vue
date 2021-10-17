@@ -33,11 +33,16 @@
       </p-button>
     </div>
 
-    <bvn-verification-block v-model="bvn" v-if="verification_method == 'BVN'" />
-    <bank-verification-block
-      v-model="accountDetails"
-      v-if="verification_method == 'ACCOUNT'"
-    />
+    <transition name="component-fade" mode="out-in">
+      <bvn-verification-block
+        v-model="bvn"
+        v-if="verification_method == 'BVN'"
+      />
+      <bank-verification-block
+        v-model="accountDetails"
+        v-if="verification_method == 'ACCOUNT'"
+      />
+    </transition>
 
     <div style="text-align: right">
       <p-button :disabled="cantMove" @click="CONTINUE" style="margin: 20px 0px"
@@ -67,7 +72,7 @@ export default {
     },
 
     CONTINUE() {
-      this.$emit("continue", this.extract);
+      this.$emit("account-verified", this.extract);
     },
   },
   computed: {
@@ -77,7 +82,9 @@ export default {
         return this.bvn.length != 11;
       } else {
         this.extract = this.accountDetails; // up
-        if (this.accountDetails == null) {return true;} // null safety 
+        if (this.accountDetails == null) {
+          return true;
+        } // null safety
         return (
           this.accountDetails.name == "" ||
           this.accountDetails.number.length != 10

@@ -149,10 +149,10 @@ export default {
 
     overflow: auto;
     padding: 0px 45px 0px 50px;
+    transition: all .3s linear;       
 
     &--show {
-      height: auto;
-      transition: ease-in 5s all;
+      height: 195px;
     }
 
     &__details {
@@ -240,14 +240,13 @@ export default {
 
     &__content {
       height: 0px;
-
       overflow: auto;
       padding: 0px 45px 0px 50px;
+      transition: all .3s linear;       
 
-      &--show {
-        height: auto;
-        transition: ease-in 5s all;
-      }
+    &--show {
+      height: 210px;
+    }
 
       &__details {
         padding-bottom: 15px;

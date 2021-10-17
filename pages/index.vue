@@ -17,14 +17,19 @@
           >
         </div>
         <div class="steps-header">
-          <tab-header v-model="tabIndex" :completed="completed" />
+          <tab-header v-model="tabIndex" editable :completed="completed" />
         </div>
       </div>
 
       <div class="components-wrapper">
-        <step-1 v-if="tabIndex == 0" @continue="completedVerification" />
-        <step-2 v-else-if="tabIndex == 1" @continue="confirmedSocialHandles" />
-        <step-3 v-else-if="tabIndex == 2" @continue="completedOnboarding" />
+        <transition name="slide-fade" mode="out-in">
+          <component
+            :is="getTab"
+            @account-verified="completedVerification"
+            @social-handles-confirmed="confirmedSocialHandles"
+            @business-confimed="confirmedBusiness"
+          ></component>
+        </transition>
       </div>
     </div>
   </div>
@@ -37,16 +42,26 @@ import Step3 from "~/components/pages/onboarding/step-3.vue";
 import TabHeader from "~/components/views/tab-header.vue";
 
 export default {
-  components: { TabHeader, Step1, Step2, Step3 },
+  components: {
+    TabHeader,
+    Step1,
+    Step2,
+    Step3,
+    "step-1": Step1,
+    "step-2": Step2,
+    "step-3": Step3,
+  },
 
   data() {
     return {
       tabIndex: 0,
+      back: false,
       completed: null,
     };
   },
   methods: {
     completedVerification(details) {
+      console.log("verified");
       this.completed = this.tabIndex;
       this.tabIndex++;
     },
@@ -54,8 +69,20 @@ export default {
       this.completed = this.tabIndex;
       this.tabIndex++;
     },
-    completedOnboarding() {
+    confirmedBusiness() {
       this.completed = this.tabIndex;
+    },
+  },
+  computed: {
+    getTab() {
+      switch (this.tabIndex) {
+        case 0:
+          return "step-1";
+        case 1:
+          return "step-2";
+        case 2:
+          return "step-3";
+      }
     },
   },
 };
