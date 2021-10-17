@@ -15,16 +15,28 @@ export default {
       { name: 'format-detection', content: 'telephone=no' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      {
+        rel: "preconnect",
+        href: "https://fonts.gstatic.com"
+      },
+      {
+        rel: "preconnect",
+        href: "https://fonts.googleapis.com"
+      },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=DM+Sans:wght@500&display=swap"
+      }
     ]
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [
-  ],
+  css: ["~assets/scss/main.scss","@mdi/font/css/materialdesignicons.css"],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    '~/plugins/globalize-components',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -38,7 +50,12 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
+    '@nuxtjs/style-resources'
   ],
+
+  styleResources: {
+    scss: ['./assets/scss/*.scss']
+  },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
