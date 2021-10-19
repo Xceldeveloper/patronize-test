@@ -39,7 +39,7 @@
         v-if="verification_method == 'BVN'"
       />
       <bank-verification-block
-        v-model="accountDetails"
+        v-model="bankAccount"
         v-if="verification_method == 'ACCOUNT'"
       />
     </transition>
@@ -62,7 +62,7 @@ export default {
     return {
       verification_method: "BVN",
       bvn: "",
-      accountDetails: null,
+      bankAccount: null,
       extract: null,
     };
   },
@@ -81,13 +81,13 @@ export default {
         this.extract = this.bvn; //prepare data to send out
         return this.bvn.length != 11;
       } else {
-        this.extract = this.accountDetails; // up
-        if (this.accountDetails == null) {
+        this.extract = this.bankAccount; // up
+        if (this.bankAccount == null) {
           return true;
         } // null safety
         return (
-          this.accountDetails.name == "" ||
-          this.accountDetails.number.length != 10
+          this.bankAccount.details == null ||
+          this.bankAccount.number.length != 10
         );
       }
     },

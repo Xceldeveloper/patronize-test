@@ -17,7 +17,7 @@
           >
         </div>
         <div class="steps-header">
-          <tab-header v-model="tabIndex" editable :completed="completed" />
+          <tab-header v-model="tabIndex" :completed="completed" />
         </div>
       </div>
 

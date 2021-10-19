@@ -4,6 +4,7 @@
     style="`${style}`"
     class="p-text p-text__element"
     :class="[propsClasses, eventClasses]"
+    @click="$emit('clicked')"
   >
     <slot> {{ text }} </slot>
   </span>

@@ -1,87 +1,127 @@
 <template>
   <div class="font-dm-sans">
-    Coming soon...
-    <p-button> Logout </p-button>
+    {{ banks }}
 
-    <p-input
-      v-model="account_number"
-      label="Bank Verification Number (11-digits)"
+    <br />
+
+    <p-select
+      select-key="name"
+      value-key="id"
+      label="Select Bank"
+      v-model="banks"
+      :items="items"
+      class="selecter"
     />
-    <p-input v-model="bvn" label="BVN" />
-    <div></div>
-    <p-input v-model="bvn" label="Instagram">
-      <template v-slot:prefix>
-        <p-text margin="5px" color="#7D8DA7"> @ </p-text>
-      </template>
-    </p-input>
 
     <br />
-    <br />
-    {{ bvn }}---------{{ account_number }}
-    <br />
-    <br />
 
-    <div class="verification-method">
-      <!-- <p-text >Select a verification method </p-text> -->
-      <p-button
-        @click="clicked('BVN')"
-        class="verification-method__tab-button"
-        :class="{ 'verification-method__tab-button--active': method == 'BVN' }"
-      >
-        BVN
-      </p-button>
+    <div v-if="1 == 2">
+      Coming soon...
+      <p-button> Logout </p-button>
 
-      <p-button
-        @click="clicked('ACCOUNT')"
-        class="verification-method__tab-button"
-        :class="{
-          'verification-method__tab-button--active': method == 'ACCOUNT',
-        }"
-      >
-        Personal Account Number
-      </p-button>
-    </div>
+      <p-input
+        v-model="account_number"
+        label="Bank Verification Number (11-digits)"
+      />
+      <p-input v-model="bvn" label="BVN" />
+      <div></div>
+      <p-input v-model="bvn" label="Instagram">
+        <template v-slot:prefix>
+          <p-text margin="5px" color="#7D8DA7"> @ </p-text>
+        </template>
+      </p-input>
 
-    <p-button   class="box">Logout</p-button> 
-    <br />
+      <br />
+      <br />
+      {{ bvn }}---------{{ account_number }}
+      <br />
+      <br />
 
-    hh
-    <div></div>
-    <div></div>
-    <br />
-    <p-select />
+      <div class="verification-method">
+        <!-- <p-text >Select a verification method </p-text> -->
+        <p-button
+          @click="clicked('BVN')"
+          class="verification-method__tab-button"
+          :class="{
+            'verification-method__tab-button--active': method == 'BVN',
+          }"
+        >
+          BVN
+        </p-button>
 
-    <div class="top">
-      <p-button class="top__logout-btn">Logout</p-button>
-    </div>
-
-    <div class="stepper">
-      <div class="stepper__step stepper__step--completed">
-        <p-button class="step__btn step__btn--completed"> 
-            <p-icon class="step__btn step__btn--completed__marker" icon="mdi-check" /> </p-button>
-        <p-text class="step__text step__text--completed">Verify Account</p-text>
+        <p-button
+          @click="clicked('ACCOUNT')"
+          class="verification-method__tab-button"
+          :class="{
+            'verification-method__tab-button--active': method == 'ACCOUNT',
+          }"
+        >
+          Personal Account Number
+        </p-button>
       </div>
 
-      <div class="stepper__step stepper__step--selected">
-        <p-button class="step__btn step__btn--selected"> 2 </p-button>
-        <p-text class="step__text step__text--selected">Social Handles</p-text>
+      <p-button class="box">Logout</p-button>
+      <br />
+
+      hh
+      <div></div>
+      <div></div>
+      <br />
+      <p-select />
+
+      <div class="top">
+        <p-button class="top__logout-btn">Logout</p-button>
       </div>
 
-       <div class="stepper__step stepper__step">
-        <p-button class="step__btn step__btn"> 3 </p-button>
-        <p-text class="step__text step__text">Social Handles</p-text>
+      <div class="stepper">
+        <div class="stepper__step stepper__step--completed">
+          <p-button class="step__btn step__btn--completed">
+            <p-icon
+              class="step__btn step__btn--completed__marker"
+              icon="mdi-check"
+            />
+          </p-button>
+          <p-text class="step__text step__text--completed"
+            >Verify Account</p-text
+          >
+        </div>
+
+        <div class="stepper__step stepper__step--selected">
+          <p-button class="step__btn step__btn--selected"> 2 </p-button>
+          <p-text class="step__text step__text--selected"
+            >Social Handles</p-text
+          >
+        </div>
+
+        <div class="stepper__step stepper__step">
+          <p-button class="step__btn step__btn"> 3 </p-button>
+          <p-text class="step__text step__text">Social Handles</p-text>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import pSelect from "~/components/custom/p-select.vue";
 export default {
+  components: { pSelect },
   data() {
     return {
       method: "BVN",
       bvn: "",
       account_number: "",
+      banks: "",
+      items: [
+        {
+          id: 1,
+          name: "Zenith",
+        },
+        {
+          id: 2,
+          name: "First",
+        },
+      ],
     };
   },
   methods: {
@@ -158,10 +198,10 @@ export default {
         color: #a5b4cb;
         background-color: #e4e9ef;
 
-        &__marker{
-            visibility: visible;
-            font-size: 16px;
-            color: #006AFF;
+        &__marker {
+          visibility: visible;
+          font-size: 16px;
+          color: #006aff;
         }
       }
     }
@@ -179,8 +219,12 @@ export default {
   }
 }
 
-.box{
+.box {
   background-color: red;
   color: yellow;
+}
+
+.selecter {
+  width: 50%;
 }
 </style>

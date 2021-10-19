@@ -6,15 +6,10 @@
       v-model="bank.number"
     />
 
-    <p-input
-      class="bank-verication-block__account-name"
-      v-model="bank.name"
-      label="Select Bank"
-    >
-      <template v-slot:suffix>
-        <p-icon icon="mdi-menu-down" style="cursor: pointer" color="#A5B4CB" />
-      </template>
-    </p-input>
+
+    <p-select :items="banks" select-key="name" v-model="bank.details"  class="bank-verication-block__account-name" label="Select Bank"/>
+
+   
   </div>
 </template>
 
@@ -25,8 +20,18 @@ export default {
     return {
       bank: {
         number: "",
-        name: "",
+        details: null,
       },
+          banks: [
+        {
+          id: 1,
+          name: "Zenith",
+        },
+        {
+          id: 2,
+          name: "First",
+        },
+      ],
     };
   },
   watch: {
