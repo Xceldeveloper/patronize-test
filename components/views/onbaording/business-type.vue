@@ -1,25 +1,18 @@
 <template>
   <div class="categories-block">
-    <p-input
+    <p-select
+      :items="businessTypes"
+      v-model="business.type"
       class="categories-block__input"
       label="Type of your business"
-      v-model="business.type"
-    >
-      <template v-slot:suffix>
-        <p-icon icon="mdi-menu-down" style="cursor: pointer" color="#A5B4CB" />
-      </template>
-    </p-input>
+    />
 
-    <p-input
+    <p-select
+      :items="businessCategory"
+      v-model="business.category"
       class="categories-block__input"
       label="Business Category"
-      v-model="business.category"
-    >
-      <template v-slot:suffix>
-        <p-icon icon="mdi-menu-down" style="cursor: pointer" color="#A5B4CB" />
-      </template>
-    </p-input>
-    <div></div>
+    />
   </div>
 </template>
 
@@ -31,6 +24,9 @@ export default {
         type: "",
         category: "",
       },
+
+      businessTypes: ["NGO", ""],
+      businessCategory: ["FintTech"],
     };
   },
   watch: {

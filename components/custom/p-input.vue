@@ -131,7 +131,7 @@ export default {
   // }
 
   &--focus {
-    border: 1.7px solid var(--color);
+    border: 1.7px solid $Blue;
   }
 
   &__prefix {
