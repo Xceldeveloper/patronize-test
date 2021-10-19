@@ -25,8 +25,14 @@ export default {
         category: "",
       },
 
-      businessTypes: ["NGO", ""],
-      businessCategory: ["FintTech"],
+      businessTypes: [
+        "Sole proprietorship",
+        "Partnership",
+        "Limited liability company (LLC)",
+        "NGO",
+        "Other",
+      ],
+      businessCategory: ["FintTech", "Ecommerce", "Logistics", "Other"],
     };
   },
   watch: {

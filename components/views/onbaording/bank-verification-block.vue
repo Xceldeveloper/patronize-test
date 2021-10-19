@@ -6,10 +6,13 @@
       v-model="bank.number"
     />
 
-
-    <p-select :items="banks" select-key="name" v-model="bank.details"  class="bank-verication-block__account-name" label="Select Bank"/>
-
-   
+    <p-select
+      :items="banks"
+      select-key="name"
+      v-model="bank.details"
+      class="bank-verication-block__account-name"
+      label="Select Bank"
+    />
   </div>
 </template>
 
@@ -22,14 +25,26 @@ export default {
         number: "",
         details: null,
       },
-          banks: [
+      banks: [
         {
           id: 1,
-          name: "Zenith",
+          name: "Diamond Bank",
         },
         {
           id: 2,
-          name: "First",
+          name: "First Bank",
+        },
+        {
+          id: 3,
+          name: "Kuda Bank",
+        },
+        {
+          id: "4",
+          name: "GT Bank",
+        },
+        {
+          id: 4,
+          name: "Zenith Bank",
         },
       ],
     };
